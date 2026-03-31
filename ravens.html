@@ -63,13 +63,36 @@
 
   /* FLOW */
   .flow-section{background:var(--c2);}
-  .flow-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;}
-  .flow-step{background:rgba(31,41,43,0.5);border:1px solid rgba(27,152,196,0.12);border-radius:4px;padding:1.8rem;position:relative;transition:border-color 0.3s,background 0.3s;}
-  .flow-step:hover{border-color:rgba(84,182,133,0.35);background:rgba(84,182,133,0.04);}
-  .flow-num{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:4rem;color:rgba(27,152,196,0.12);line-height:1;margin-bottom:0.3rem;}
-  .flow-icon{font-size:1.5rem;margin-bottom:0.7rem;display:block;}
-  .flow-step h4{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.95rem;color:#fff;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.6rem;}
-  .flow-step p{font-size:0.84rem;color:rgba(193,241,251,0.62);line-height:1.75;}
+  .flow-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem;}
+  .flow-step{
+    position:relative;border-radius:4px;padding:2rem;
+    border:1px solid rgba(27,152,196,0.15);
+    overflow:hidden;min-height:260px;
+    display:flex;flex-direction:column;justify-content:flex-end;
+    transition:border-color 0.4s;
+  }
+  .flow-step:hover{border-color:rgba(84,182,133,0.5);}
+  .flow-bg{
+    position:absolute;inset:0;
+    background-size:cover;background-position:center;
+    filter:brightness(0.12) saturate(0.8);
+    transition:filter 0.5s ease;
+    z-index:0;
+  }
+  .flow-step:hover .flow-bg{filter:brightness(0.45) saturate(1.2);}
+  .flow-overlay{
+    position:absolute;inset:0;z-index:1;
+    background:linear-gradient(0deg,rgba(3,26,57,0.95) 0%,rgba(3,26,57,0.5) 60%,transparent 100%);
+    transition:opacity 0.4s;
+  }
+  .flow-step:hover .flow-overlay{background:linear-gradient(0deg,rgba(3,26,57,0.92) 0%,rgba(3,26,57,0.3) 60%,transparent 100%);}
+  .flow-content{position:relative;z-index:2;}
+  .flow-num{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:3.5rem;color:rgba(27,152,196,0.25);line-height:1;margin-bottom:0.2rem;transition:color 0.4s;}
+  .flow-step:hover .flow-num{color:rgba(84,182,133,0.4);}
+  .flow-icon{font-size:1.4rem;margin-bottom:0.6rem;display:block;}
+  .flow-step h4{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;color:#fff;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.5rem;}
+  .flow-step p{font-size:0.83rem;color:rgba(193,241,251,0.65);line-height:1.75;transition:color 0.4s;}
+  .flow-step:hover p{color:rgba(193,241,251,0.85);}
 
   /* NETWORK */
   .network-section{background:var(--c1);}
@@ -210,40 +233,64 @@
   <p class="section-lead" data-en="Every mission follows a precise 6-step autonomous loop — from launch to data delivery — with zero human input required." data-es="Cada misión sigue un preciso bucle autónomo de 6 pasos — desde el despegue hasta la entrega de datos — sin ninguna intervención humana requerida.">Every mission follows a precise 6-step autonomous loop — from launch to data delivery — with zero human input required.</p>
   <div class="flow-grid">
     <div class="flow-step">
-      <div class="flow-num">01</div>
-      <span class="flow-icon">🛫</span>
-      <h4 data-en="Auto Launch" data-es="Despegue Automático">Auto Launch</h4>
-      <p data-en="The Principium HMI triggers a scheduled or on-demand patrol. Ravens lift off autonomously from their docking pad — no pilot needed." data-es="El HMI del Principium activa una patrulla programada o bajo demanda. Los Ravens despegan de forma autónoma — sin piloto necesario.">The Principium HMI triggers a scheduled or on-demand patrol. Ravens lift off autonomously from their docking pad — no pilot needed.</p>
+      <div class="flow-bg" style="background-image:url('p/Auto Launch.png');"></div>
+      <div class="flow-overlay"></div>
+      <div class="flow-content">
+        <div class="flow-num">01</div>
+        <span class="flow-icon">🛫</span>
+        <h4 data-en="Auto Launch" data-es="Despegue Automático">Auto Launch</h4>
+        <p data-en="The Principium HMI triggers a scheduled or on-demand patrol. Ravens lift off autonomously from their docking pad — no pilot needed." data-es="El HMI del Principium activa una patrulla programada o bajo demanda. Los Ravens despegan de forma autónoma — sin piloto necesario.">The Principium HMI triggers a scheduled or on-demand patrol. Ravens lift off autonomously from their docking pad — no pilot needed.</p>
+      </div>
     </div>
     <div class="flow-step">
-      <div class="flow-num">02</div>
-      <span class="flow-icon">📡</span>
-      <h4 data-en="Mesh Activation" data-es="Activación Mesh">Mesh Activation</h4>
-      <p data-en="As Ravens ascend they instantly become LoRaWAN relay nodes — extending the private network deep into valleys and behind hills where ground signal fails." data-es="Al ascender, los Ravens se convierten instantáneamente en nodos de relé LoRaWAN — extendiendo la red privada hacia los valles donde la señal terrestre falla.">As Ravens ascend they instantly become LoRaWAN relay nodes — extending the private network deep into valleys and behind hills where ground signal fails.</p>
+      <div class="flow-bg" style="background-image:url('p/Mesh Activation.png');"></div>
+      <div class="flow-overlay"></div>
+      <div class="flow-content">
+        <div class="flow-num">02</div>
+        <span class="flow-icon">📡</span>
+        <h4 data-en="Mesh Activation" data-es="Activación Mesh">Mesh Activation</h4>
+        <p data-en="As Ravens ascend they instantly become LoRaWAN relay nodes — extending the private network deep into valleys and behind hills where ground signal fails." data-es="Al ascender, los Ravens se convierten instantáneamente en nodos de relé LoRaWAN — extendiendo la red privada hacia los valles donde la señal terrestre falla.">As Ravens ascend they instantly become LoRaWAN relay nodes — extending the private network deep into valleys and behind hills where ground signal fails.</p>
+      </div>
     </div>
     <div class="flow-step">
-      <div class="flow-num">03</div>
-      <span class="flow-icon">🤖</span>
-      <h4 data-en="AI Scanning" data-es="Escaneo con IA">AI Scanning</h4>
-      <p data-en="YOLOv8 processes the live camera feed in real time — detecting, classifying, and geotagging waste by type, volume, and urgency score." data-es="YOLOv8 procesa el feed de cámara en tiempo real — detectando, clasificando y geoetiquetando residuos por tipo, volumen y puntuación de urgencia.">YOLOv8 processes the live camera feed in real time — detecting, classifying, and geotagging waste by type, volume, and urgency score.</p>
+      <div class="flow-bg" style="background-image:url('p/AI Scanning.png');"></div>
+      <div class="flow-overlay"></div>
+      <div class="flow-content">
+        <div class="flow-num">03</div>
+        <span class="flow-icon">🤖</span>
+        <h4 data-en="AI Scanning" data-es="Escaneo con IA">AI Scanning</h4>
+        <p data-en="YOLOv8 processes the live camera feed in real time — detecting, classifying, and geotagging waste by type, volume, and urgency score." data-es="YOLOv8 procesa el feed de cámara en tiempo real — detectando, clasificando y geoetiquetando residuos por tipo, volumen y puntuación de urgencia.">YOLOv8 processes the live camera feed in real time — detecting, classifying, and geotagging waste by type, volume, and urgency score.</p>
+      </div>
     </div>
     <div class="flow-step">
-      <div class="flow-num">04</div>
-      <span class="flow-icon">🗺️</span>
-      <h4 data-en="Map Generation" data-es="Generación de Mapa">Map Generation</h4>
-      <p data-en="Scan data is compiled into a live waste heatmap and pushed to the Principium HMI — technicians see exactly where Havocs need to deploy." data-es="Los datos del escaneo se compilan en un mapa de calor en vivo y se envían al HMI — los técnicos ven exactamente dónde deben desplegarse los Havocs.">Scan data is compiled into a live waste heatmap and pushed to the Principium HMI — technicians see exactly where Havocs need to deploy.</p>
+      <div class="flow-bg" style="background-image:url('p/Map Generation.png');"></div>
+      <div class="flow-overlay"></div>
+      <div class="flow-content">
+        <div class="flow-num">04</div>
+        <span class="flow-icon">🗺️</span>
+        <h4 data-en="Map Generation" data-es="Generación de Mapa">Map Generation</h4>
+        <p data-en="Scan data is compiled into a live waste heatmap and pushed to the Principium HMI — technicians see exactly where Havocs need to deploy." data-es="Los datos del escaneo se compilan en un mapa de calor en vivo y se envían al HMI — los técnicos ven exactamente dónde deben desplegarse los Havocs.">Scan data is compiled into a live waste heatmap and pushed to the Principium HMI — technicians see exactly where Havocs need to deploy.</p>
+      </div>
     </div>
     <div class="flow-step">
-      <div class="flow-num">05</div>
-      <span class="flow-icon">📲</span>
-      <h4 data-en="Havoc Dispatch" data-es="Despacho de Havocs">Havoc Dispatch</h4>
-      <p data-en="Optimized routes are pushed to Havoc units via the mesh network. Ravens stay airborne to maintain signal coverage for the entire ground mission." data-es="Las rutas optimizadas se envían a las unidades Havoc por la red mesh. Los Ravens permanecen en vuelo para mantener la cobertura durante la misión terrestre.">Optimized routes are pushed to Havoc units via the mesh network. Ravens stay airborne to maintain signal coverage for the entire ground mission.</p>
+      <div class="flow-bg" style="background-image:url('p/Havoc Dispatch.png');"></div>
+      <div class="flow-overlay"></div>
+      <div class="flow-content">
+        <div class="flow-num">05</div>
+        <span class="flow-icon">📲</span>
+        <h4 data-en="Havoc Dispatch" data-es="Despacho de Havocs">Havoc Dispatch</h4>
+        <p data-en="Optimized routes are pushed to Havoc units via the mesh network. Ravens stay airborne to maintain signal coverage for the entire ground mission." data-es="Las rutas optimizadas se envían a las unidades Havoc por la red mesh. Los Ravens permanecen en vuelo para mantener la cobertura durante la misión terrestre.">Optimized routes are pushed to Havoc units via the mesh network. Ravens stay airborne to maintain signal coverage for the entire ground mission.</p>
+      </div>
     </div>
     <div class="flow-step">
-      <div class="flow-num">06</div>
-      <span class="flow-icon">🔋</span>
-      <h4 data-en="Auto Return & Recharge" data-es="Retorno y Recarga">Auto Return & Recharge</h4>
-      <p data-en="At 20% battery Ravens autonomously return to the Principium dock, land with precision, and recharge in 25 minutes — ready for the next sortie." data-es="Al 20% de batería, los Ravens regresan autónomamente al dock, aterrizan con precisión y se recargan en 25 minutos — listos para la siguiente misión.">At 20% battery Ravens autonomously return to the Principium dock, land with precision, and recharge in 25 minutes — ready for the next sortie.</p>
+      <div class="flow-bg" style="background-image:url('p/Auto Return & Recharge. png');"></div>
+      <div class="flow-overlay"></div>
+      <div class="flow-content">
+        <div class="flow-num">06</div>
+        <span class="flow-icon">🔋</span>
+        <h4 data-en="Auto Return & Recharge" data-es="Retorno y Recarga">Auto Return &amp; Recharge</h4>
+        <p data-en="At 20% battery Ravens autonomously return to the Principium dock, land with precision, and recharge in 25 minutes — ready for the next sortie." data-es="Al 20% de batería, los Ravens regresan autónomamente al dock, aterrizan con precisión y se recargan en 25 minutos — listos para la siguiente misión.">At 20% battery Ravens autonomously return to the Principium dock, land with precision, and recharge in 25 minutes — ready for the next sortie.</p>
+      </div>
     </div>
   </div>
 </section>
