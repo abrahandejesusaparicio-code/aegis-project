@@ -1,1 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Ravens — Sentinel Corp</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Exo+2:wght@300;400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+  :root{--c1:#1F292B;--c2:#031A39;--c3:#54B685;--c4:#14678F;--c5:#C1F1FB;--c6:#1B98C4;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background-color:var(--c2);color:var(--c5);font-family:'Exo 2',sans-serif;font-weight:300;overflow-x:hidden;}
+  ::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:var(--c1);}::-webkit-scrollbar-thumb{background:var(--c4);border-radius:3px;}
 
+  nav{position:fixed;top:0;left:0;width:100%;z-index:100;background:rgba(3,26,57,0.9);backdrop-filter:blur(14px);border-bottom:1px solid rgba(27,152,196,0.25);display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:64px;}
+  .nav-logo{display:flex;align-items:center;gap:10px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.3rem;letter-spacing:0.08em;color:#fff;text-decoration:none;}
+  .nav-logo img{height:36px;width:auto;}
+  .nav-logo span{color:var(--c3);}
+  .nav-right{display:flex;align-items:center;gap:1.5rem;}
+  .nav-back{font-family:'Rajdhani',sans-serif;font-weight:600;font-size:0.82rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--c5);text-decoration:none;opacity:0.7;transition:opacity 0.2s,color 0.2s;}
+  .nav-back:hover{opacity:1;color:var(--c3);}
+  .lang-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(84,182,133,0.1);border:1px solid rgba(84,182,133,0.4);border-radius:2px;padding:5px 14px;cursor:pointer;font-family:'Share Tech Mono',monospace;font-size:0.72rem;letter-spacing:0.16em;color:var(--c3);text-transform:uppercase;transition:all 0.22s;}
+  .lang-btn:hover{background:rgba(84,182,133,0.2);}
+
+  .hero{position:relative;height:72vh;display:flex;align-items:flex-end;padding:0 7% 4.5rem;overflow:hidden;}
+  .hero-bg{position:absolute;inset:0;background-image:url('p/RAVENS DRONES.png');background-size:cover;background-position:center;filter:brightness(0.28) saturate(1.2);z-index:0;}
+  .hero-overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(3,26,57,0.97) 0%,rgba(3,26,57,0.15) 65%);z-index:1;}
+  .hero-grid{position:absolute;inset:0;z-index:1;opacity:0.05;background-image:linear-gradient(var(--c6) 1px,transparent 1px),linear-gradient(90deg,var(--c6) 1px,transparent 1px);background-size:60px 60px;}
+  .hero-content{position:relative;z-index:2;max-width:800px;}
+  .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(27,152,196,0.15);border:1px solid rgba(27,152,196,0.4);border-radius:2px;padding:5px 14px;font-family:'Share Tech Mono',monospace;font-size:0.7rem;letter-spacing:0.18em;color:var(--c6);margin-bottom:1.2rem;text-transform:uppercase;}
+  .hero-badge::before{content:'';width:7px;height:7px;background:var(--c3);border-radius:50%;animation:pulse 2s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.7)}}
+  .hero h1{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:clamp(3.5rem,8vw,7rem);line-height:0.92;color:#fff;margin-bottom:1.2rem;}
+  .hero h1 .accent{color:var(--c3);}
+  .hero-sub{font-size:1rem;color:rgba(193,241,251,0.75);max-width:580px;line-height:1.8;}
+
+  section{padding:5rem 7%;}
+  .section-tag{font-family:'Share Tech Mono',monospace;font-size:0.7rem;letter-spacing:0.2em;color:var(--c4);text-transform:uppercase;margin-bottom:0.5rem;}
+  .section-title{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:clamp(1.8rem,4vw,2.8rem);color:#fff;line-height:1.1;margin-bottom:1rem;}
+  .section-title .accent{color:var(--c3);}
+  .section-lead{font-size:1rem;line-height:1.8;color:rgba(193,241,251,0.75);max-width:640px;margin-bottom:3rem;}
+  .divider{width:48px;height:2px;background:linear-gradient(90deg,var(--c3),var(--c6));margin-bottom:2rem;}
+
+  /* STATS */
+  .stats-section{background:var(--c1);}
+  .stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-bottom:3.5rem;}
+  .stat-pill{background:rgba(3,26,57,0.8);border:1px solid rgba(27,152,196,0.2);border-radius:4px;padding:1.4rem;text-align:center;transition:border-color 0.3s;}
+  .stat-pill:hover{border-color:rgba(84,182,133,0.4);}
+  .stat-val{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:2rem;color:var(--c3);line-height:1;margin-bottom:0.3rem;}
+  .stat-label{font-family:'Share Tech Mono',monospace;font-size:0.62rem;color:var(--c4);letter-spacing:0.14em;text-transform:uppercase;}
+
+  /* SPECS GRID */
+  .specs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;}
+  .spec-block{background:rgba(3,26,57,0.65);border:1px solid rgba(27,152,196,0.18);border-radius:4px;padding:1.8rem;transition:border-color 0.3s,box-shadow 0.3s;}
+  .spec-block:hover{border-color:rgba(84,182,133,0.35);box-shadow:0 0 20px rgba(84,182,133,0.07);}
+  .spec-block-tag{font-family:'Share Tech Mono',monospace;font-size:0.63rem;letter-spacing:0.2em;color:var(--c6);text-transform:uppercase;margin-bottom:0.7rem;}
+  .spec-block h3{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.1rem;color:#fff;margin-bottom:1rem;text-transform:uppercase;letter-spacing:0.05em;}
+  .spec-list{list-style:none;}
+  .spec-list li{font-size:0.86rem;color:rgba(193,241,251,0.7);padding:5px 0;display:flex;align-items:flex-start;gap:8px;border-bottom:1px solid rgba(27,152,196,0.08);}
+  .spec-list li:last-child{border-bottom:none;}
+  .spec-list li::before{content:'▸';color:var(--c3);flex-shrink:0;margin-top:1px;}
+  .spec-list li strong{color:var(--c5);font-weight:500;min-width:90px;flex-shrink:0;}
+
+  /* FLOW */
+  .flow-section{background:var(--c2);}
+  .flow-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;}
+  .flow-step{background:rgba(31,41,43,0.5);border:1px solid rgba(27,152,196,0.12);border-radius:4px;padding:1.8rem;position:relative;transition:border-color 0.3s,background 0.3s;}
+  .flow-step:hover{border-color:rgba(84,182,133,0.35);background:rgba(84,182,133,0.04);}
+  .flow-num{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:4rem;color:rgba(27,152,196,0.12);line-height:1;margin-bottom:0.3rem;}
+  .flow-icon{font-size:1.5rem;margin-bottom:0.7rem;display:block;}
+  .flow-step h4{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.95rem;color:#fff;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.6rem;}
+  .flow-step p{font-size:0.84rem;color:rgba(193,241,251,0.62);line-height:1.75;}
+
+  /* NETWORK */
+  .network-section{background:var(--c1);}
+  .network-two-col{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+  @media(max-width:768px){.network-two-col{grid-template-columns:1fr;gap:2rem;}}
+  .network-img{position:relative;border-radius:6px;overflow:hidden;border:1px solid rgba(27,152,196,0.25);}
+  .network-img img{width:100%;display:block;filter:brightness(0.82) saturate(1.2);}
+  .network-img-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(3,26,57,0.45) 0%,transparent 60%);}
+  .network-points{display:flex;flex-direction:column;gap:1.6rem;}
+  .network-point{display:flex;gap:1.2rem;align-items:flex-start;}
+  .dot{width:10px;height:10px;border-radius:50%;background:var(--c3);flex-shrink:0;margin-top:5px;box-shadow:0 0 8px rgba(84,182,133,0.5);}
+  .network-point h4{font-family:'Rajdhani',sans-serif;font-weight:600;font-size:1rem;color:var(--c5);margin-bottom:0.3rem;}
+  .network-point p{font-size:0.86rem;color:rgba(193,241,251,0.63);line-height:1.72;}
+
+  /* BOTTOM NAV */
+  .back-bar{background:var(--c2);padding:2.5rem 7%;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(27,152,196,0.1);}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:2px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.88rem;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:all 0.25s;border:none;}
+  .btn-primary{background:var(--c3);color:var(--c1);box-shadow:0 0 20px rgba(84,182,133,0.35);}
+  .btn-primary:hover{background:#6dd4a0;}
+  .btn-outline{background:transparent;color:var(--c5);border:1px solid rgba(193,241,251,0.35);}
+  .btn-outline:hover{border-color:var(--c6);color:var(--c6);}
+
+  footer{background:var(--c1);border-top:1px solid rgba(27,152,196,0.15);padding:2rem 7%;display:flex;align-items:center;justify-content:space-between;}
+  .footer-brand{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.1rem;color:#fff;letter-spacing:0.08em;}
+  .footer-brand span{color:var(--c3);}
+  .footer-copy{font-size:0.78rem;color:rgba(193,241,251,0.28);}
+
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+  .hero-content>*{animation:fadeUp 0.7s ease both;}
+  .hero-content>*:nth-child(1){animation-delay:0.1s}
+  .hero-content>*:nth-child(2){animation-delay:0.2s}
+  .hero-content>*:nth-child(3){animation-delay:0.32s}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="sentinel_corp_logo_.png" alt="Logo" onerror="this.style.display='none'">
+    SENTINEL <span>CORP</span>
+  </a>
+  <div class="nav-right">
+    <a href="index.html" class="nav-back" data-en="← Back to Aegis" data-es="← Volver a Aegis">← Back to Aegis</a>
+    <button class="lang-btn" onclick="toggleLang()">🌐 <span id="langLabel">ES</span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge" data-en="Phase I · Intelligence Layer" data-es="Fase I · Capa de Inteligencia">Phase I · Intelligence Layer</div>
+    <h1>THE <span class="accent">RAVENS</span></h1>
+    <p class="hero-sub" data-en="Autonomous aerial units that see what no human can reach — mapping waste hotspots, relaying signals across dead zones, and directing the Havoc fleet across San Miguelito's most inaccessible terrain." data-es="Unidades aéreas autónomas que ven lo que ningún humano puede alcanzar — mapeando puntos críticos de residuos, transmitiendo señales a través de zonas muertas y dirigiendo la flota Havoc a través del terreno más inaccesible de San Miguelito.">Autonomous aerial units that see what no human can reach — mapping waste hotspots, relaying signals across dead zones, and directing the Havoc fleet across San Miguelito's most inaccessible terrain.</p>
+  </div>
+</section>
+
+<!-- STATS + SPECS -->
+<section class="stats-section">
+  <p class="section-tag" data-en="// Key Performance Figures" data-es="// Cifras Clave de Rendimiento">// Key Performance Figures</p>
+  <h2 class="section-title">Ravens <span class="accent" data-en="At a Glance" data-es="de un Vistazo">At a Glance</span></h2>
+  <div class="divider"></div>
+  <div class="stats-row">
+    <div class="stat-pill"><div class="stat-val">45 min</div><div class="stat-label" data-en="Flight Endurance" data-es="Autonomía de Vuelo">Flight Endurance</div></div>
+    <div class="stat-pill"><div class="stat-val">12 km</div><div class="stat-label" data-en="Coverage Radius" data-es="Radio de Cobertura">Coverage Radius</div></div>
+    <div class="stat-pill"><div class="stat-val">10 km</div><div class="stat-label" data-en="LoRaWAN Range" data-es="Alcance LoRaWAN">LoRaWAN Range</div></div>
+    <div class="stat-pill"><div class="stat-val">30 fps</div><div class="stat-label" data-en="AI Vision Feed" data-es="Visión IA en Vivo">AI Vision Feed</div></div>
+    <div class="stat-pill"><div class="stat-val">IP54</div><div class="stat-label" data-en="Weather Rating" data-es="Certificación Climática">Weather Rating</div></div>
+    <div class="stat-pill"><div class="stat-val">25 min</div><div class="stat-label" data-en="Recharge Time" data-es="Tiempo de Recarga">Recharge Time</div></div>
+  </div>
+
+  <div class="specs-grid">
+    <div class="spec-block">
+      <div class="spec-block-tag">// Airframe &amp; Flight</div>
+      <h3 data-en="Platform" data-es="Plataforma">Platform</h3>
+      <ul class="spec-list">
+        <li><strong data-en="Base:" data-es="Base:">Base:</strong><span data-en="DJI M30 / Skydio X10 airframe" data-es="Plataforma DJI M30 / Skydio X10">DJI M30 / Skydio X10 airframe</span></li>
+        <li><strong data-en="Motors:" data-es="Motores:">Motors:</strong><span data-en="4× brushless DC, 2,400 KV" data-es="4× BLDC, 2.400 KV">4× brushless DC, 2,400 KV</span></li>
+        <li><strong data-en="Battery:" data-es="Batería:">Battery:</strong><span data-en="6S LiPo 22.2V / 8,000mAh" data-es="LiPo 6S 22,2V / 8.000mAh">6S LiPo 22.2V / 8,000mAh</span></li>
+        <li><strong data-en="Endurance:" data-es="Autonomía:">Endurance:</strong><span data-en="45 min at full payload" data-es="45 min a carga completa">45 min at full payload</span></li>
+        <li><strong data-en="Max speed:" data-es="Vel. máx.:">Max speed:</strong><span data-en="72 km/h — 20 km/h cruise" data-es="72 km/h — crucero 20 km/h">72 km/h — 20 km/h cruise</span></li>
+        <li><strong data-en="Altitude:" data-es="Altitud:">Altitude:</strong><span data-en="500m AGL, ICAO compliant" data-es="500m AGL, conforme OACI">500m AGL, ICAO compliant</span></li>
+        <li><strong data-en="Rating:" data-es="Cert.:">Rating:</strong><span data-en="IP54 — rain and dust resistant" data-es="IP54 — resistente lluvia y polvo">IP54 — rain and dust resistant</span></li>
+      </ul>
+    </div>
+
+    <div class="spec-block">
+      <div class="spec-block-tag">// Sensing &amp; AI Vision</div>
+      <h3 data-en="AI Payload" data-es="Carga IA">AI Payload</h3>
+      <ul class="spec-list">
+        <li><strong data-en="Camera:" data-es="Cámara:">Camera:</strong><span data-en="48MP RGB + 640×512 FLIR thermal" data-es="48MP RGB + térmica FLIR 640×512">48MP RGB + 640×512 FLIR thermal</span></li>
+        <li><strong data-en="Vision AI:" data-es="IA Visual:">Vision AI:</strong><span data-en="YOLOv8 real-time waste detection" data-es="YOLOv8 detección residuos en tiempo real">YOLOv8 real-time waste detection</span></li>
+        <li><strong data-en="Frame rate:" data-es="Fotogramas:">Frame rate:</strong><span data-en="30 fps live to Principium HMI" data-es="30 fps en vivo al HMI">30 fps live to Principium HMI</span></li>
+        <li><strong data-en="LiDAR:" data-es="LiDAR:">LiDAR:</strong><span data-en="360° obstacle avoidance, 30m" data-es="Evasión 360°, alcance 30m">360° obstacle avoidance, 30m</span></li>
+        <li><strong data-en="Mapping:" data-es="Mapeo:">Mapping:</strong><span data-en="2cm/px orthophoto + 3D point cloud" data-es="Ortofoto 2cm/px + nube 3D">2cm/px orthophoto + 3D point cloud</span></li>
+        <li><strong data-en="Compute:" data-es="Cómputo:">Compute:</strong><span data-en="NVIDIA Jetson Orin NX onboard" data-es="NVIDIA Jetson Orin NX a bordo">NVIDIA Jetson Orin NX onboard</span></li>
+        <li><strong data-en="Link:" data-es="Enlace:">Link:</strong><span data-en="Encrypted 4G LTE + LoRaWAN" data-es="4G LTE cifrado + LoRaWAN">Encrypted 4G LTE + LoRaWAN</span></li>
+      </ul>
+    </div>
+
+    <div class="spec-block">
+      <div class="spec-block-tag">// Comms &amp; Mesh Network</div>
+      <h3 data-en="Signal Repeater" data-es="Repetidor de Señal">Signal Repeater</h3>
+      <ul class="spec-list">
+        <li><strong data-en="Protocol:" data-es="Protocolo:">Protocol:</strong><span data-en="LoRaWAN 1.0.4 — 868/915 MHz" data-es="LoRaWAN 1.0.4 — 868/915 MHz">LoRaWAN 1.0.4 — 868/915 MHz</span></li>
+        <li><strong data-en="Mesh range:" data-es="Alcance mesh:">Mesh range:</strong><span data-en="Up to 10 km node-to-node" data-es="Hasta 10 km nodo a nodo">Up to 10 km node-to-node</span></li>
+        <li><strong data-en="Capacity:" data-es="Capacidad:">Capacity:</strong><span data-en="12 Havoc units per Raven node" data-es="12 unidades Havoc por nodo Raven">12 Havoc units per Raven node</span></li>
+        <li><strong data-en="Latency:" data-es="Latencia:">Latency:</strong><span data-en="&lt;200ms command relay" data-es="&lt;200ms relé de comandos">&lt;200ms command relay</span></li>
+        <li><strong data-en="Redundancy:" data-es="Redundancia:">Redundancy:</strong><span data-en="LTE failover if LoRa drops" data-es="LTE de respaldo si LoRa falla">LTE failover if LoRa drops</span></li>
+        <li><strong data-en="Security:" data-es="Seguridad:">Security:</strong><span data-en="AES-128 encrypted packets" data-es="Paquetes cifrados AES-128">AES-128 encrypted packets</span></li>
+        <li><strong data-en="GPS:" data-es="GPS:">GPS:</strong><span data-en="RTK-assisted ±2cm positioning" data-es="RTK asistido ±2cm">RTK-assisted ±2cm positioning</span></li>
+      </ul>
+    </div>
+
+    <div class="spec-block">
+      <div class="spec-block-tag">// Autonomy &amp; Operations</div>
+      <h3 data-en="Flight Intelligence" data-es="Inteligencia de Vuelo">Flight Intelligence</h3>
+      <ul class="spec-list">
+        <li><strong data-en="Mission:" data-es="Misión:">Mission:</strong><span data-en="Fully autonomous patrol + return" data-es="Patrulla autónoma + retorno">Fully autonomous patrol + return</span></li>
+        <li><strong data-en="Waypoints:" data-es="Waypoints:">Waypoints:</strong><span data-en="AI-generated from scan history" data-es="Generados por IA del historial">AI-generated from scan history</span></li>
+        <li><strong data-en="Low battery:" data-es="Batería baja:">Low battery:</strong><span data-en="Auto RTB at 20% charge" data-es="Retorno automático al 20%">Auto RTB at 20% charge</span></li>
+        <li><strong data-en="Recharge:" data-es="Recarga:">Recharge:</strong><span data-en="25 min at Principium auto-dock" data-es="25 min en auto-dock Principium">25 min at Principium auto-dock</span></li>
+        <li><strong data-en="Wind:" data-es="Viento:">Wind:</strong><span data-en="Stable up to 12 m/s crosswind" data-es="Estable hasta 12 m/s">Stable up to 12 m/s crosswind</span></li>
+        <li><strong data-en="Night ops:" data-es="Nocturno:">Night ops:</strong><span data-en="Thermal vision — 24/7 capable" data-es="Visión térmica — 24/7">Thermal vision — 24/7 capable</span></li>
+        <li><strong data-en="Fleet:" data-es="Flota:">Fleet:</strong><span data-en="3 Ravens per Principium (pilot)" data-es="3 Ravens por Principium (piloto)">3 Ravens per Principium (pilot)</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="flow-section">
+  <p class="section-tag" data-en="// Operational Sequence" data-es="// Secuencia Operacional">// Operational Sequence</p>
+  <h2 class="section-title">How the <span class="accent" data-en="Ravens Work" data-es="Ravens Funcionan">Ravens Work</span></h2>
+  <div class="divider"></div>
+  <p class="section-lead" data-en="Every mission follows a precise 6-step autonomous loop — from launch to data delivery — with zero human input required." data-es="Cada misión sigue un preciso bucle autónomo de 6 pasos — desde el despegue hasta la entrega de datos — sin ninguna intervención humana requerida.">Every mission follows a precise 6-step autonomous loop — from launch to data delivery — with zero human input required.</p>
+  <div class="flow-grid">
+    <div class="flow-step">
+      <div class="flow-num">01</div>
+      <span class="flow-icon">🛫</span>
+      <h4 data-en="Auto Launch" data-es="Despegue Automático">Auto Launch</h4>
+      <p data-en="The Principium HMI triggers a scheduled or on-demand patrol. Ravens lift off autonomously from their docking pad — no pilot needed." data-es="El HMI del Principium activa una patrulla programada o bajo demanda. Los Ravens despegan de forma autónoma — sin piloto necesario.">The Principium HMI triggers a scheduled or on-demand patrol. Ravens lift off autonomously from their docking pad — no pilot needed.</p>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">02</div>
+      <span class="flow-icon">📡</span>
+      <h4 data-en="Mesh Activation" data-es="Activación Mesh">Mesh Activation</h4>
+      <p data-en="As Ravens ascend they instantly become LoRaWAN relay nodes — extending the private network deep into valleys and behind hills where ground signal fails." data-es="Al ascender, los Ravens se convierten instantáneamente en nodos de relé LoRaWAN — extendiendo la red privada hacia los valles donde la señal terrestre falla.">As Ravens ascend they instantly become LoRaWAN relay nodes — extending the private network deep into valleys and behind hills where ground signal fails.</p>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">03</div>
+      <span class="flow-icon">🤖</span>
+      <h4 data-en="AI Scanning" data-es="Escaneo con IA">AI Scanning</h4>
+      <p data-en="YOLOv8 processes the live camera feed in real time — detecting, classifying, and geotagging waste by type, volume, and urgency score." data-es="YOLOv8 procesa el feed de cámara en tiempo real — detectando, clasificando y geoetiquetando residuos por tipo, volumen y puntuación de urgencia.">YOLOv8 processes the live camera feed in real time — detecting, classifying, and geotagging waste by type, volume, and urgency score.</p>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">04</div>
+      <span class="flow-icon">🗺️</span>
+      <h4 data-en="Map Generation" data-es="Generación de Mapa">Map Generation</h4>
+      <p data-en="Scan data is compiled into a live waste heatmap and pushed to the Principium HMI — technicians see exactly where Havocs need to deploy." data-es="Los datos del escaneo se compilan en un mapa de calor en vivo y se envían al HMI — los técnicos ven exactamente dónde deben desplegarse los Havocs.">Scan data is compiled into a live waste heatmap and pushed to the Principium HMI — technicians see exactly where Havocs need to deploy.</p>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">05</div>
+      <span class="flow-icon">📲</span>
+      <h4 data-en="Havoc Dispatch" data-es="Despacho de Havocs">Havoc Dispatch</h4>
+      <p data-en="Optimized routes are pushed to Havoc units via the mesh network. Ravens stay airborne to maintain signal coverage for the entire ground mission." data-es="Las rutas optimizadas se envían a las unidades Havoc por la red mesh. Los Ravens permanecen en vuelo para mantener la cobertura durante la misión terrestre.">Optimized routes are pushed to Havoc units via the mesh network. Ravens stay airborne to maintain signal coverage for the entire ground mission.</p>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">06</div>
+      <span class="flow-icon">🔋</span>
+      <h4 data-en="Auto Return & Recharge" data-es="Retorno y Recarga">Auto Return & Recharge</h4>
+      <p data-en="At 20% battery Ravens autonomously return to the Principium dock, land with precision, and recharge in 25 minutes — ready for the next sortie." data-es="Al 20% de batería, los Ravens regresan autónomamente al dock, aterrizan con precisión y se recargan en 25 minutos — listos para la siguiente misión.">At 20% battery Ravens autonomously return to the Principium dock, land with precision, and recharge in 25 minutes — ready for the next sortie.</p>
+    </div>
+  </div>
+</section>
+
+<!-- LOARAWAN NETWORK -->
+<section class="network-section">
+  <p class="section-tag" data-en="// Mesh Architecture" data-es="// Arquitectura Mesh">// Mesh Architecture</p>
+  <h2 class="section-title">The <span class="accent">LoRaWAN</span> <span data-en="Mesh Network" data-es="Red Mesh">Mesh Network</span></h2>
+  <div class="divider"></div>
+  <div class="network-two-col">
+    <div class="network-img">
+      <img src="p/RAVENS DRONES.png" alt="Ravens LoRaWAN Mesh">
+      <div class="network-img-overlay"></div>
+    </div>
+    <div class="network-points">
+      <div class="network-point">
+        <div class="dot"></div>
+        <div>
+          <h4 data-en="Why LoRaWAN?" data-es="¿Por qué LoRaWAN?">Why LoRaWAN?</h4>
+          <p data-en="San Miguelito's deep valleys block WiFi and cellular. LoRaWAN operates on sub-GHz frequencies that penetrate terrain and structures — perfect for the district's challenging geography." data-es="Los profundos valles de San Miguelito bloquean WiFi y señal celular. LoRaWAN opera en frecuencias sub-GHz que penetran el terreno y las estructuras — perfecto para la geografía desafiante del distrito.">San Miguelito's deep valleys block WiFi and cellular. LoRaWAN operates on sub-GHz frequencies that penetrate terrain and structures — perfect for the district's challenging geography.</p>
+        </div>
+      </div>
+      <div class="network-point">
+        <div class="dot"></div>
+        <div>
+          <h4 data-en="Airborne Nodes" data-es="Nodos Aéreos">Airborne Nodes</h4>
+          <p data-en="Each Raven at 80–120m altitude becomes a relay node with a 10km line-of-sight radius — covering entire neighborhoods from a single airframe." data-es="Cada Raven a 80–120m de altitud se convierte en un nodo de relé con 10km de radio — cubriendo barrios enteros desde una sola aeronave.">Each Raven at 80–120m altitude becomes a relay node with a 10km line-of-sight radius — covering entire neighborhoods from a single airframe.</p>
+        </div>
+      </div>
+      <div class="network-point">
+        <div class="dot"></div>
+        <div>
+          <h4 data-en="Dual Redundancy" data-es="Doble Redundancia">Dual Redundancy</h4>
+          <p data-en="If LoRaWAN drops, the system auto-fails over to encrypted 4G LTE — Havoc units never lose contact with the Principium command center." data-es="Si LoRaWAN falla, el sistema cambia a 4G LTE cifrado automáticamente — las unidades Havoc nunca pierden contacto con el centro de comando.">If LoRaWAN drops, the system auto-fails over to encrypted 4G LTE — Havoc units never lose contact with the Principium command center.</p>
+        </div>
+      </div>
+      <div class="network-point">
+        <div class="dot"></div>
+        <div>
+          <h4 data-en="3 Ravens = Zero Dead Zones" data-es="3 Ravens = Cero Zonas Muertas">3 Ravens = Zero Dead Zones</h4>
+          <p data-en="The pilot fleet of 3 Ravens provides overlapping mesh coverage across the entire San Miguelito zone — with no signal gaps during simultaneous patrol." data-es="La flota piloto de 3 Ravens proporciona cobertura mesh superpuesta en toda la zona de San Miguelito — sin brechas de señal durante la patrulla simultánea.">The pilot fleet of 3 Ravens provides overlapping mesh coverage across the entire San Miguelito zone — with no signal gaps during simultaneous patrol.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BACK BAR -->
+<div class="back-bar">
+  <a href="index.html" class="btn btn-outline" data-en="← Back to Aegis" data-es="← Volver a Aegis">← Back to Aegis</a>
+  <a href="index.html#phases" class="btn btn-primary" data-en="View Full System →" data-es="Ver Sistema Completo →">View Full System →</a>
+</div>
+
+<footer>
+  <div class="footer-brand">SENTINEL <span>CORP</span></div>
+  <div class="footer-copy">© 2026 Sentinel Corp · Universidad Latina de Panamá</div>
+</footer>
+
+<script>
+  let lang='en';
+  function toggleLang(){
+    lang=lang==='en'?'es':'en';
+    document.getElementById('langLabel').textContent=lang==='en'?'ES':'EN';
+    document.querySelectorAll('[data-en]').forEach(el=>{
+      const v=el.getAttribute('data-'+lang);
+      if(v!==null)el.innerHTML=v;
+    });
+    document.documentElement.lang=lang;
+  }
+</script>
+</body>
+</html>
