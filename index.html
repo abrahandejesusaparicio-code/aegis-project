@@ -237,6 +237,7 @@
         <li data-en="Autonomous return-to-base + inductive charging" data-es="Retorno autónomo a base + carga inductiva">Autonomous return-to-base + inductive charging</li>
         <li data-en="Route optimization relay for Havoc ground units" data-es="Relé de optimización de rutas para unidades terrestres Havoc">Route optimization relay for Havoc ground units</li>
       </ul>
+      <a href="ravens.html" style="display:inline-flex;align-items:center;gap:10px;margin-top:1.8rem;padding:13px 28px;background:transparent;border:1px solid rgba(84,182,133,0.6);border-radius:2px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.88rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--c3);text-decoration:none;transition:all 0.25s;" onmouseover="this.style.background='rgba(84,182,133,0.12)';this.style.borderColor='var(--c3)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(84,182,133,0.6)'" data-en="Full Ravens Specs →" data-es="Especificaciones Completas →">Full Ravens Specs →</a>
     </div>
   </div>
 
@@ -423,7 +424,7 @@
   <h2><span class="accent" data-en="Sustainable Future?" data-es="Futuro Sostenible?">Sustainable Future?</span></h2>
   <p data-en="Aegis is not just a cleanup crew. It is a Mechatronic Ecosystem that turns a city's biggest problem — waste — into its most valuable asset: energy." data-es="Aegis no es solo un equipo de limpieza. Es un Ecosistema Mecatrónico que convierte el mayor problema de una ciudad — los residuos — en su activo más valioso: la energía.">Aegis is not just a cleanup crew. It is a Mechatronic Ecosystem that turns a city's biggest problem — waste — into its most valuable asset: energy.</p>
   <div class="btn-group" style="justify-content:center;">
-    <a href="/cdn-cgi/l/email-protection#acc5c2cac3ecdfc9c2d8c5c2c9c0cfc3dedc82c5c3" class="btn btn-primary" data-en="Get in Touch" data-es="Contáctenos">Get in Touch</a>
+    <a href="mailto:info@sentinelcorp.io" class="btn btn-primary" data-en="Get in Touch" data-es="Contáctenos">Get in Touch</a>
     <a href="#phases" class="btn btn-outline" data-en="Learn More" data-es="Saber Más">Learn More</a>
   </div>
 </section>
@@ -437,9 +438,17 @@
   <div class="footer-copy">© 2026 Sentinel Corp. All rights reserved.<br>Universidad Latina de Panamá</div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   let lang='en';
   function toggleLang(){
     lang=lang==='en'?'es':'en';
     document.getElementById('langLabel').textContent=lang==='en'?'ES':'EN';
     document.querySelectorAll('[data-en]').forEach(el=>{
+      const v=el.getAttribute('data-'+lang);
+      if(v!==null)el.innerHTML=v;
+    });
+    document.documentElement.lang=lang;
+  }
+</script>
+</body>
+</html>
