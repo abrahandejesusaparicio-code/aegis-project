@@ -94,19 +94,6 @@
   .flow-step p{font-size:0.83rem;color:rgba(193,241,251,0.65);line-height:1.75;transition:color 0.4s;}
   .flow-step:hover p{color:rgba(193,241,251,0.85);}
 
-  /* NETWORK */
-  .network-section{background:var(--c1);}
-  .network-two-col{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
-  @media(max-width:768px){.network-two-col{grid-template-columns:1fr;gap:2rem;}}
-  .network-img{position:relative;border-radius:6px;overflow:hidden;border:1px solid rgba(27,152,196,0.25);}
-  .network-img img{width:100%;display:block;filter:brightness(0.82) saturate(1.2);}
-  .network-img-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(3,26,57,0.45) 0%,transparent 60%);}
-  .network-points{display:flex;flex-direction:column;gap:1.6rem;}
-  .network-point{display:flex;gap:1.2rem;align-items:flex-start;}
-  .dot{width:10px;height:10px;border-radius:50%;background:var(--c3);flex-shrink:0;margin-top:5px;box-shadow:0 0 8px rgba(84,182,133,0.5);}
-  .network-point h4{font-family:'Rajdhani',sans-serif;font-weight:600;font-size:1rem;color:var(--c5);margin-bottom:0.3rem;}
-  .network-point p{font-size:0.86rem;color:rgba(193,241,251,0.63);line-height:1.72;}
-
   /* BOTTOM NAV */
   .back-bar{background:var(--c2);padding:2.5rem 7%;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(27,152,196,0.1);}
   .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:2px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.88rem;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:all 0.25s;border:none;}
@@ -294,7 +281,6 @@
     </div>
   </div>
 </section>
-
 <!-- ANTENNA RELAY NETWORK -->
 <section style="background:var(--c1);padding:5rem 7%;">
   <p class="section-tag" data-en="// Extended Range Infrastructure" data-es="// Infraestructura de Rango Extendido">// Extended Range Infrastructure</p>
@@ -372,49 +358,6 @@
   </div>
 </section>
 
-<!-- LOARAWAN NETWORK -->
-<section class="network-section">
-  <p class="section-tag" data-en="// Mesh Architecture" data-es="// Arquitectura Mesh">// Mesh Architecture</p>
-  <h2 class="section-title">The <span class="accent">LoRaWAN</span> <span data-en="Mesh Network" data-es="Red Mesh">Mesh Network</span></h2>
-  <div class="divider"></div>
-  <div class="network-two-col">
-    <div class="network-img">
-      <img src="p/RAVENS DRONES.png" alt="Ravens LoRaWAN Mesh">
-      <div class="network-img-overlay"></div>
-    </div>
-    <div class="network-points">
-      <div class="network-point">
-        <div class="dot"></div>
-        <div>
-          <h4 data-en="Why LoRaWAN?" data-es="¿Por qué LoRaWAN?">Why LoRaWAN?</h4>
-          <p data-en="San Miguelito's deep valleys block WiFi and cellular. LoRaWAN operates on sub-GHz frequencies that penetrate terrain and structures — perfect for the district's challenging geography." data-es="Los profundos valles de San Miguelito bloquean WiFi y señal celular. LoRaWAN opera en frecuencias sub-GHz que penetran el terreno y las estructuras — perfecto para la geografía desafiante del distrito.">San Miguelito's deep valleys block WiFi and cellular. LoRaWAN operates on sub-GHz frequencies that penetrate terrain and structures — perfect for the district's challenging geography.</p>
-        </div>
-      </div>
-      <div class="network-point">
-        <div class="dot"></div>
-        <div>
-          <h4 data-en="Airborne Nodes" data-es="Nodos Aéreos">Airborne Nodes</h4>
-          <p data-en="Each Raven at 80–120m altitude becomes a relay node with a 10km line-of-sight radius — covering entire neighborhoods from a single airframe." data-es="Cada Raven a 80–120m de altitud se convierte en un nodo de relé con 10km de radio — cubriendo barrios enteros desde una sola aeronave.">Each Raven at 80–120m altitude becomes a relay node with a 10km line-of-sight radius — covering entire neighborhoods from a single airframe.</p>
-        </div>
-      </div>
-      <div class="network-point">
-        <div class="dot"></div>
-        <div>
-          <h4 data-en="Dual Redundancy" data-es="Doble Redundancia">Dual Redundancy</h4>
-          <p data-en="If LoRaWAN drops, the system auto-fails over to encrypted 4G LTE — Havoc units never lose contact with the Principium command center." data-es="Si LoRaWAN falla, el sistema cambia a 4G LTE cifrado automáticamente — las unidades Havoc nunca pierden contacto con el centro de comando.">If LoRaWAN drops, the system auto-fails over to encrypted 4G LTE — Havoc units never lose contact with the Principium command center.</p>
-        </div>
-      </div>
-      <div class="network-point">
-        <div class="dot"></div>
-        <div>
-          <h4 data-en="3 Ravens = Zero Dead Zones" data-es="3 Ravens = Cero Zonas Muertas">3 Ravens = Zero Dead Zones</h4>
-          <p data-en="The pilot fleet of 3 Ravens provides overlapping mesh coverage across the entire San Miguelito zone — with no signal gaps during simultaneous patrol." data-es="La flota piloto de 3 Ravens proporciona cobertura mesh superpuesta en toda la zona de San Miguelito — sin brechas de señal durante la patrulla simultánea.">The pilot fleet of 3 Ravens provides overlapping mesh coverage across the entire San Miguelito zone — with no signal gaps during simultaneous patrol.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- BACK BAR -->
 <div class="back-bar">
   <a href="index.html" class="btn btn-outline" data-en="← Back to Aegis" data-es="← Volver a Aegis">← Back to Aegis</a>
@@ -440,3 +383,4 @@
 </script>
 </body>
 </html>
+
