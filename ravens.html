@@ -283,13 +283,90 @@
       </div>
     </div>
     <div class="flow-step">
-      <div class="flow-bg" style="background-image:url('p/Auto Return & Recharge. png');"></div>
+      <div class="flow-bg" style="background-image:url('p/Auto%20Return%20%26%20Recharge.%20png');"></div>
       <div class="flow-overlay"></div>
       <div class="flow-content">
         <div class="flow-num">06</div>
         <span class="flow-icon">🔋</span>
         <h4 data-en="Auto Return & Recharge" data-es="Retorno y Recarga">Auto Return &amp; Recharge</h4>
         <p data-en="At 20% battery Ravens autonomously return to the Principium dock, land with precision, and recharge in 25 minutes — ready for the next sortie." data-es="Al 20% de batería, los Ravens regresan autónomamente al dock, aterrizan con precisión y se recargan en 25 minutos — listos para la siguiente misión.">At 20% battery Ravens autonomously return to the Principium dock, land with precision, and recharge in 25 minutes — ready for the next sortie.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ANTENNA RELAY NETWORK -->
+<section style="background:var(--c1);padding:5rem 7%;">
+  <p class="section-tag" data-en="// Extended Range Infrastructure" data-es="// Infraestructura de Rango Extendido">// Extended Range Infrastructure</p>
+  <h2 class="section-title"><span class="accent" data-en="Antenna" data-es="Red de">Antenna</span> <span data-en="Relay Network" data-es="Antenas Repetidoras">Relay Network</span></h2>
+  <div class="divider"></div>
+  <p class="section-lead" data-en="Fixed ground-based relay antennas extend the Ravens' operational range far beyond their onboard LoRaWAN capacity — allowing the fleet to explore deeper zones, farther hillsides, and previously unreachable areas of San Miguelito without breaking mesh connectivity." data-es="Las antenas repetidoras fijas en tierra extienden el rango operativo de los Ravens mucho más allá de su capacidad LoRaWAN a bordo — permitiendo a la flota explorar zonas más profundas, laderas más lejanas y áreas previamente inaccesibles de San Miguelito sin perder la conectividad mesh.">Fixed ground-based relay antennas extend the Ravens' operational range far beyond their onboard LoRaWAN capacity — allowing the fleet to explore deeper zones, farther hillsides, and previously unreachable areas of San Miguelito without breaking mesh connectivity.</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;">
+    <!-- Antenna image -->
+    <div style="position:relative;border-radius:6px;overflow:hidden;border:1px solid rgba(27,152,196,0.25);">
+      <img src="p/antenas.png" alt="Antenna Relay Network" style="width:100%;display:block;filter:brightness(0.85) saturate(1.15);">
+      <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(3,26,57,0.45) 0%,transparent 60%);"></div>
+      <div style="position:absolute;bottom:1rem;left:1rem;font-family:'Share Tech Mono',monospace;font-size:0.68rem;color:var(--c3);letter-spacing:0.18em;text-transform:uppercase;" data-en="Ground Relay · LoRaWAN Extension Node" data-es="Relé Terrestre · Nodo de Extensión LoRaWAN">Ground Relay · LoRaWAN Extension Node</div>
+    </div>
+
+    <!-- Antenna specs -->
+    <div>
+      <!-- How it extends range -->
+      <div style="margin-bottom:2.5rem;">
+        <p style="font-family:'Share Tech Mono',monospace;font-size:0.65rem;color:var(--c6);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:1rem;" data-en="// How It Works" data-es="// Cómo Funciona">// How It Works</p>
+        <div style="display:flex;flex-direction:column;gap:1rem;">
+          <div style="display:flex;gap:1rem;align-items:flex-start;">
+            <div style="width:28px;height:28px;border-radius:50%;border:1px solid var(--c6);display:flex;align-items:center;justify-content:center;font-family:'Share Tech Mono',monospace;font-size:0.65rem;color:var(--c6);flex-shrink:0;">A</div>
+            <div>
+              <h4 style="font-family:'Rajdhani',sans-serif;font-weight:600;font-size:0.95rem;color:var(--c5);margin-bottom:0.2rem;" data-en="Raven broadcasts to antenna" data-es="El Raven transmite a la antena">Raven broadcasts to antenna</h4>
+              <p style="font-size:0.84rem;color:rgba(193,241,251,0.62);line-height:1.7;" data-en="As the Raven pushes into deep terrain it hands off its LoRaWAN signal to the nearest fixed relay antenna, maintaining an unbroken data link." data-es="Al adentrarse en terreno profundo, el Raven transfiere su señal LoRaWAN a la antena repetidora fija más cercana, manteniendo un enlace de datos ininterrumpido.">As the Raven pushes into deep terrain it hands off its LoRaWAN signal to the nearest fixed relay antenna, maintaining an unbroken data link.</p>
+            </div>
+          </div>
+          <div style="display:flex;gap:1rem;align-items:flex-start;">
+            <div style="width:28px;height:28px;border-radius:50%;border:1px solid var(--c6);display:flex;align-items:center;justify-content:center;font-family:'Share Tech Mono',monospace;font-size:0.65rem;color:var(--c6);flex-shrink:0;">B</div>
+            <div>
+              <h4 style="font-family:'Rajdhani',sans-serif;font-weight:600;font-size:0.95rem;color:var(--c5);margin-bottom:0.2rem;" data-en="Antenna relays to Principium" data-es="La antena retransmite al Principium">Antenna relays to Principium</h4>
+              <p style="font-size:0.84rem;color:rgba(193,241,251,0.62);line-height:1.7;" data-en="The ground antenna forwards scan data, route commands, and telemetry back to the Principium hub in real time — even when the Raven is kilometres beyond its base range." data-es="La antena terrestre reenvía datos de escaneo, comandos de ruta y telemetría al hub Principium en tiempo real — incluso cuando el Raven está kilómetros más allá de su rango base.">The ground antenna forwards scan data, route commands, and telemetry back to the Principium hub in real time — even when the Raven is kilometres beyond its base range.</p>
+            </div>
+          </div>
+          <div style="display:flex;gap:1rem;align-items:flex-start;">
+            <div style="width:28px;height:28px;border-radius:50%;border:1px solid var(--c6);display:flex;align-items:center;justify-content:center;font-family:'Share Tech Mono',monospace;font-size:0.65rem;color:var(--c6);flex-shrink:0;">C</div>
+            <div>
+              <h4 style="font-family:'Rajdhani',sans-serif;font-weight:600;font-size:0.95rem;color:var(--c5);margin-bottom:0.2rem;" data-en="Chained antennas = unlimited reach" data-es="Antenas encadenadas = alcance ilimitado">Chained antennas = unlimited reach</h4>
+              <p style="font-size:0.84rem;color:rgba(193,241,251,0.62);line-height:1.7;" data-en="Multiple antennas can be chained across hillsides and rooftops — each one extending the network further, effectively giving Ravens unlimited exploration range across the entire district." data-es="Varias antenas pueden encadenarse por laderas y tejados — cada una extendiendo la red más lejos, dando a los Ravens un alcance de exploración ilimitado en todo el distrito.">Multiple antennas can be chained across hillsides and rooftops — each one extending the network further, effectively giving Ravens unlimited exploration range across the entire district.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Antenna specs -->
+      <p style="font-family:'Share Tech Mono',monospace;font-size:0.65rem;color:var(--c6);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:0.8rem;" data-en="// Antenna Specifications" data-es="// Especificaciones de Antena">// Antenna Specifications</p>
+      <ul class="spec-list">
+        <li><strong data-en="Type:" data-es="Tipo:">Type:</strong><span data-en="LoRaWAN 868/915 MHz omni-directional repeater" data-es="Repetidor omnidireccional LoRaWAN 868/915 MHz">LoRaWAN 868/915 MHz omni-directional repeater</span></li>
+        <li><strong data-en="Range:" data-es="Alcance:">Range:</strong><span data-en="Up to 15 km per node in open terrain" data-es="Hasta 15 km por nodo en terreno abierto">Up to 15 km per node in open terrain</span></li>
+        <li><strong data-en="Power:" data-es="Alimentación:">Power:</strong><span data-en="Solar panel + 12V LiFePO₄ backup battery" data-es="Panel solar + batería de respaldo LiFePO₄ 12V">Solar panel + 12V LiFePO₄ backup battery</span></li>
+        <li><strong data-en="Install:" data-es="Instalación:">Install:</strong><span data-en="Pole-mount — rooftop, hilltop, or streetlight" data-es="Montaje en poste — tejado, cima o farola">Pole-mount — rooftop, hilltop, or streetlight</span></li>
+        <li><strong data-en="Weatherproof:" data-es="Resistencia:">Weatherproof:</strong><span data-en="IP67 — fully sealed against rain and humidity" data-es="IP67 — completamente sellado contra lluvia y humedad">IP67 — fully sealed against rain and humidity</span></li>
+        <li><strong data-en="Backhaul:" data-es="Backhaul:">Backhaul:</strong><span data-en="4G LTE uplink to Principium if fiber unavailable" data-es="Enlace 4G LTE al Principium si no hay fibra disponible">4G LTE uplink to Principium if fiber unavailable</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Coverage comparison bar -->
+  <div style="margin-top:3rem;padding:2rem;background:rgba(3,26,57,0.6);border:1px solid rgba(27,152,196,0.18);border-radius:4px;">
+    <p style="font-family:'Share Tech Mono',monospace;font-size:0.65rem;color:var(--c4);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:1.2rem;" data-en="// Coverage Comparison" data-es="// Comparación de Cobertura">// Coverage Comparison</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;text-align:center;">
+      <div>
+        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.8rem;color:var(--c4);margin-bottom:0.3rem;">10 km</div>
+        <div style="font-family:'Share Tech Mono',monospace;font-size:0.62rem;color:rgba(193,241,251,0.45);letter-spacing:0.12em;text-transform:uppercase;" data-en="Raven alone (airborne)" data-es="Raven solo (en vuelo)">Raven alone (airborne)</div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:center;">
+        <div style="font-family:'Rajdhani',sans-serif;font-size:1.5rem;color:var(--c3);">+</div>
+      </div>
+      <div>
+        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.8rem;color:var(--c3);margin-bottom:0.3rem;">∞</div>
+        <div style="font-family:'Share Tech Mono',monospace;font-size:0.62rem;color:rgba(193,241,251,0.45);letter-spacing:0.12em;text-transform:uppercase;" data-en="Raven + chained antennas" data-es="Raven + antenas encadenadas">Raven + chained antennas</div>
       </div>
     </div>
   </div>
