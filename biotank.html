@@ -1,1 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Algae Biotank — Sentinel Corp</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Exo+2:wght@300;400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+  :root{--c1:#1F292B;--c2:#031A39;--c3:#54B685;--c4:#14678F;--c5:#C1F1FB;--c6:#1B98C4;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background-color:var(--c2);color:var(--c5);font-family:'Exo 2',sans-serif;font-weight:300;overflow-x:hidden;}
+  ::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:var(--c1);}::-webkit-scrollbar-thumb{background:var(--c4);border-radius:3px;}
 
+  nav{position:fixed;top:0;left:0;width:100%;z-index:100;background:rgba(3,26,57,0.9);backdrop-filter:blur(14px);border-bottom:1px solid rgba(27,152,196,0.25);display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:64px;}
+  .nav-logo{display:flex;align-items:center;gap:10px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.3rem;letter-spacing:0.08em;color:#fff;text-decoration:none;}
+  .nav-logo img{height:36px;width:auto;}
+  .nav-logo span{color:var(--c3);}
+  .nav-right{display:flex;align-items:center;gap:1.5rem;}
+  .nav-back{font-family:'Rajdhani',sans-serif;font-weight:600;font-size:0.82rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--c5);text-decoration:none;opacity:0.7;transition:opacity 0.2s,color 0.2s;}
+  .nav-back:hover{opacity:1;color:var(--c3);}
+  .lang-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(84,182,133,0.1);border:1px solid rgba(84,182,133,0.4);border-radius:2px;padding:5px 14px;cursor:pointer;font-family:'Share Tech Mono',monospace;font-size:0.72rem;letter-spacing:0.16em;color:var(--c3);text-transform:uppercase;transition:all 0.22s;}
+  .lang-btn:hover{background:rgba(84,182,133,0.2);}
+
+  /* HERO */
+  .hero{position:relative;height:72vh;display:flex;align-items:flex-end;padding:0 7% 4.5rem;overflow:hidden;}
+  .hero-bg{position:absolute;inset:0;background-image:url('p/aegis biotanks .png');background-size:cover;background-position:center;filter:brightness(0.28) saturate(1.2);z-index:0;}
+  .hero-overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(3,26,57,0.97) 0%,rgba(3,26,57,0.15) 65%);z-index:1;}
+  .hero-grid{position:absolute;inset:0;z-index:1;opacity:0.05;background-image:linear-gradient(var(--c6) 1px,transparent 1px),linear-gradient(90deg,var(--c6) 1px,transparent 1px);background-size:60px 60px;}
+  .hero-content{position:relative;z-index:2;max-width:800px;}
+  .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(27,152,196,0.15);border:1px solid rgba(27,152,196,0.4);border-radius:2px;padding:5px 14px;font-family:'Share Tech Mono',monospace;font-size:0.7rem;letter-spacing:0.18em;color:var(--c6);margin-bottom:1.2rem;text-transform:uppercase;}
+  .hero-badge::before{content:'';width:7px;height:7px;background:var(--c3);border-radius:50%;animation:pulse 2s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.7)}}
+  .hero h1{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:clamp(3rem,7vw,6.5rem);line-height:0.92;color:#fff;margin-bottom:1.2rem;}
+  .hero h1 .accent{color:var(--c3);}
+  .hero-sub{font-size:1rem;color:rgba(193,241,251,0.75);max-width:580px;line-height:1.8;}
+
+  section{padding:5rem 7%;}
+  .section-tag{font-family:'Share Tech Mono',monospace;font-size:0.7rem;letter-spacing:0.2em;color:var(--c4);text-transform:uppercase;margin-bottom:0.5rem;}
+  .section-title{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:clamp(1.8rem,4vw,2.8rem);color:#fff;line-height:1.1;margin-bottom:1rem;}
+  .section-title .accent{color:var(--c3);}
+  .section-lead{font-size:1rem;line-height:1.8;color:rgba(193,241,251,0.75);max-width:640px;margin-bottom:3rem;}
+  .divider{width:48px;height:2px;background:linear-gradient(90deg,var(--c3),var(--c6));margin-bottom:2rem;}
+
+  /* STATS */
+  .stats-section{background:var(--c1);}
+  .stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-bottom:3.5rem;}
+  .stat-pill{background:rgba(3,26,57,0.8);border:1px solid rgba(27,152,196,0.2);border-radius:4px;padding:1.4rem;text-align:center;transition:border-color 0.3s;}
+  .stat-pill:hover{border-color:rgba(84,182,133,0.4);}
+  .stat-val{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:2rem;color:var(--c3);line-height:1;margin-bottom:0.3rem;}
+  .stat-label{font-family:'Share Tech Mono',monospace;font-size:0.62rem;color:var(--c4);letter-spacing:0.14em;text-transform:uppercase;}
+
+  /* SPECS GRID */
+  .specs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;}
+  .spec-block{background:rgba(3,26,57,0.65);border:1px solid rgba(27,152,196,0.18);border-radius:4px;padding:1.8rem;transition:border-color 0.3s,box-shadow 0.3s;}
+  .spec-block:hover{border-color:rgba(84,182,133,0.35);box-shadow:0 0 20px rgba(84,182,133,0.07);}
+  .spec-block-tag{font-family:'Share Tech Mono',monospace;font-size:0.63rem;letter-spacing:0.2em;color:var(--c6);text-transform:uppercase;margin-bottom:0.7rem;}
+  .spec-block h3{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.1rem;color:#fff;margin-bottom:1rem;text-transform:uppercase;letter-spacing:0.05em;}
+  .spec-list{list-style:none;}
+  .spec-list li{font-size:0.86rem;color:rgba(193,241,251,0.7);padding:5px 0;display:flex;align-items:flex-start;gap:8px;border-bottom:1px solid rgba(27,152,196,0.08);}
+  .spec-list li:last-child{border-bottom:none;}
+  .spec-list li::before{content:'▸';color:var(--c3);flex-shrink:0;margin-top:1px;}
+  .spec-list li strong{color:var(--c5);font-weight:500;min-width:100px;flex-shrink:0;}
+
+  /* TWO COL */
+  .two-col-section{background:var(--c2);}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:center;}
+  @media(max-width:768px){.two-col{grid-template-columns:1fr;gap:2rem;}}
+  .col-img{position:relative;border-radius:6px;overflow:hidden;border:1px solid rgba(27,152,196,0.25);}
+  .col-img img{width:100%;display:block;filter:brightness(0.85) saturate(1.15);aspect-ratio:16/10;object-fit:cover;}
+  .col-img-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(3,26,57,0.45) 0%,transparent 60%);}
+  .col-img-badge{position:absolute;top:1rem;left:1rem;background:rgba(3,26,57,0.85);border:1px solid rgba(84,182,133,0.5);border-radius:2px;padding:4px 12px;font-family:'Share Tech Mono',monospace;font-size:0.68rem;letter-spacing:0.2em;color:var(--c3);text-transform:uppercase;}
+
+  /* OUTPUT CARDS */
+  .outputs-section{background:var(--c1);}
+  .output-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;}
+  .output-card{background:rgba(3,26,57,0.7);border:1px solid rgba(27,152,196,0.2);border-radius:4px;padding:2rem;transition:border-color 0.3s,box-shadow 0.3s;}
+  .output-card:hover{border-color:rgba(84,182,133,0.45);box-shadow:0 0 24px rgba(84,182,133,0.1);}
+  .output-icon{font-size:2rem;margin-bottom:1rem;display:block;}
+  .output-card h3{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.2rem;color:#fff;margin-bottom:0.3rem;text-transform:uppercase;letter-spacing:0.05em;}
+  .output-card .output-tag{display:inline-block;padding:3px 10px;background:rgba(84,182,133,0.12);border:1px solid rgba(84,182,133,0.3);border-radius:2px;font-family:'Share Tech Mono',monospace;font-size:0.65rem;color:var(--c3);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:1rem;}
+  .output-card p{font-size:0.88rem;color:rgba(193,241,251,0.65);line-height:1.75;}
+  .output-val{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.5rem;color:var(--c3);margin-top:0.8rem;}
+  .output-val-label{font-family:'Share Tech Mono',monospace;font-size:0.62rem;color:var(--c4);letter-spacing:0.12em;text-transform:uppercase;}
+
+  /* CYCLE FLOW */
+  .cycle-section{background:var(--c2);}
+  .cycle-steps{display:flex;flex-direction:column;gap:0;}
+  .cycle-step{display:grid;grid-template-columns:60px 4px 1fr;gap:0 1.5rem;align-items:start;padding-bottom:2rem;}
+  .cycle-step:last-child{padding-bottom:0;}
+  .cycle-num-wrap{display:flex;flex-direction:column;align-items:center;gap:0;}
+  .cycle-num{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--c6);display:flex;align-items:center;justify-content:center;font-family:'Share Tech Mono',monospace;font-size:0.78rem;color:var(--c6);flex-shrink:0;background:rgba(3,26,57,0.8);}
+  .cycle-line{width:1px;flex:1;background:rgba(27,152,196,0.2);min-height:40px;}
+  .cycle-step:last-child .cycle-line{display:none;}
+  .cycle-content{padding-top:8px;padding-bottom:1rem;}
+  .cycle-content h4{font-family:'Rajdhani',sans-serif;font-weight:600;font-size:1rem;color:var(--c5);margin-bottom:0.3rem;}
+  .cycle-content p{font-size:0.87rem;color:rgba(193,241,251,0.62);line-height:1.75;}
+
+  /* BOTTOM NAV */
+  .back-bar{background:var(--c1);padding:2.5rem 7%;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(27,152,196,0.1);}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:2px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.88rem;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:all 0.25s;border:none;}
+  .btn-primary{background:var(--c3);color:var(--c1);box-shadow:0 0 20px rgba(84,182,133,0.35);}
+  .btn-primary:hover{background:#6dd4a0;}
+  .btn-outline{background:transparent;color:var(--c5);border:1px solid rgba(193,241,251,0.35);}
+  .btn-outline:hover{border-color:var(--c6);color:var(--c6);}
+
+  footer{background:var(--c1);border-top:1px solid rgba(27,152,196,0.15);padding:2rem 7%;display:flex;align-items:center;justify-content:space-between;}
+  .footer-brand{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.1rem;color:#fff;letter-spacing:0.08em;}
+  .footer-brand span{color:var(--c3);}
+  .footer-copy{font-size:0.78rem;color:rgba(193,241,251,0.28);}
+
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+  .hero-content>*{animation:fadeUp 0.7s ease both;}
+  .hero-content>*:nth-child(1){animation-delay:0.1s}
+  .hero-content>*:nth-child(2){animation-delay:0.2s}
+  .hero-content>*:nth-child(3){animation-delay:0.32s}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="sentinel_corp_logo_.png" alt="Logo" onerror="this.style.display='none'">
+    SENTINEL <span>CORP</span>
+  </a>
+  <div class="nav-right">
+    <a href="index.html" class="nav-back" data-en="← Back to Aegis" data-es="← Volver a Aegis">← Back to Aegis</a>
+    <button class="lang-btn" onclick="toggleLang()">🌐 <span id="langLabel">ES</span></button>
+  </div>
+</nav>
+
+<!-- HERO — aegis biotanks .png as background -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge" data-en="Phase III · Circular Energy Return" data-es="Fase III · Retorno Energético Circular">Phase III · Circular Energy Return</div>
+    <h1>THE ALGAE<br><span class="accent">BIOTANK</span></h1>
+    <p class="hero-sub" data-en="Where waste becomes energy — a living reactor that converts the city's organic refuse into biodiesel, methane, and fertilizer, closing the loop completely." data-es="Donde los residuos se convierten en energía — un reactor vivo que convierte los desechos orgánicos de la ciudad en biodiésel, metano y fertilizante, cerrando el ciclo completamente.">Where waste becomes energy — a living reactor that converts the city's organic refuse into biodiesel, methane, and fertilizer, closing the loop completely.</p>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-section">
+  <p class="section-tag" data-en="// Key Performance Figures" data-es="// Cifras Clave de Rendimiento">// Key Performance Figures</p>
+  <h2 class="section-title">Biotank <span class="accent" data-en="At a Glance" data-es="de un Vistazo">At a Glance</span></h2>
+  <div class="divider"></div>
+  <div class="stats-row">
+    <div class="stat-pill"><div class="stat-val">3</div><div class="stat-label" data-en="Energy Outputs" data-es="Salidas Energéticas">Energy Outputs</div></div>
+    <div class="stat-pill"><div class="stat-val">24/7</div><div class="stat-label" data-en="Continuous Feed" data-es="Alimentación Continua">Continuous Feed</div></div>
+    <div class="stat-pill"><div class="stat-val">95%</div><div class="stat-label" data-en="Organic Conversion" data-es="Conversión Orgánica">Organic Conversion</div></div>
+    <div class="stat-pill"><div class="stat-val">0</div><div class="stat-label" data-en="Waste Output" data-es="Residuos Generados">Waste Output</div></div>
+    <div class="stat-pill"><div class="stat-val">CO₂</div><div class="stat-label" data-en="Sequestered Daily" data-es="Capturado Diariamente">Sequestered Daily</div></div>
+    <div class="stat-pill"><div class="stat-val">365</div><div class="stat-label" data-en="Days/Year Active" data-es="Días/Año Activo">Days/Year Active</div></div>
+  </div>
+
+  <!-- SPECS GRID -->
+  <div class="specs-grid">
+    <div class="spec-block">
+      <div class="spec-block-tag">🧬 // Biology</div>
+      <h3 data-en="The Organism" data-es="El Organismo">The Organism</h3>
+      <ul class="spec-list">
+        <li><strong data-en="Species:" data-es="Especie:">Species:</strong><span data-en="Chlorella vulgaris — high-lipid strain" data-es="Chlorella vulgaris — cepa de alto contenido lipídico">Chlorella vulgaris — high-lipid strain</span></li>
+        <li><strong data-en="Growth rate:" data-es="Tasa de crecimiento:">Growth rate:</strong><span data-en="2–5× faster than terrestrial crops" data-es="2–5× más rápido que los cultivos terrestres">2–5× faster than terrestrial crops</span></li>
+        <li><strong data-en="Lipid content:" data-es="Contenido lipídico:">Lipid content:</strong><span data-en="28–32% dry weight — optimized for biodiesel" data-es="28–32% en peso seco — optimizado para biodiésel">28–32% dry weight — optimized for biodiesel</span></li>
+        <li><strong data-en="CO₂ uptake:" data-es="Absorción de CO₂:">CO₂ uptake:</strong><span data-en="1.8 kg CO₂ per kg of dry biomass" data-es="1,8 kg de CO₂ por kg de biomasa seca">1.8 kg CO₂ per kg of dry biomass</span></li>
+        <li><strong data-en="Temp range:" data-es="Rango de temp.:">Temp range:</strong><span data-en="25–35°C — ideal for Panama's climate" data-es="25–35°C — ideal para el clima panameño">25–35°C — ideal for Panama's climate</span></li>
+        <li><strong data-en="Light source:" data-es="Fuente de luz:">Light source:</strong><span data-en="Natural sunlight + LED supplemental" data-es="Luz solar natural + LED suplementario">Natural sunlight + LED supplemental</span></li>
+        <li><strong data-en="Feed source:" data-es="Fuente de alimentación:">Feed source:</strong><span data-en="Havoc bio-slurry + CO₂ from methane burn" data-es="Bio-lodo Havoc + CO₂ de combustión de metano">Havoc bio-slurry + CO₂ from methane burn</span></li>
+      </ul>
+    </div>
+
+    <div class="spec-block">
+      <div class="spec-block-tag">⚗️ // Photobioreactor</div>
+      <h3 data-en="The Reactor" data-es="El Reactor">The Reactor</h3>
+      <ul class="spec-list">
+        <li><strong data-en="Type:" data-es="Tipo:">Type:</strong><span data-en="Closed-loop tubular photobioreactor" data-es="Fotobiorreactor tubular de circuito cerrado">Closed-loop tubular photobioreactor</span></li>
+        <li><strong data-en="Volume:" data-es="Volumen:">Volume:</strong><span data-en="5,000 L per Principium hub" data-es="5.000 L por hub Principium">5,000 L per Principium hub</span></li>
+        <li><strong data-en="Harvest cycle:" data-es="Ciclo de cosecha:">Harvest cycle:</strong><span data-en="Continuous — centrifuge extraction every 6h" data-es="Continuo — extracción por centrífuga cada 6h">Continuous — centrifuge extraction every 6h</span></li>
+        <li><strong data-en="Mixing:" data-es="Mezcla:">Mixing:</strong><span data-en="Peristaltic pump circulation" data-es="Circulación por bomba peristáltica">Peristaltic pump circulation</span></li>
+        <li><strong data-en="pH control:" data-es="Control de pH:">pH control:</strong><span data-en="Automated CO₂ injection — pH 6.5–7.5" data-es="Inyección automática de CO₂ — pH 6,5–7,5">Automated CO₂ injection — pH 6.5–7.5</span></li>
+        <li><strong data-en="Contamination:" data-es="Contaminación:">Contamination:</strong><span data-en="UV sterilization on all input streams" data-es="Esterilización UV en todos los flujos de entrada">UV sterilization on all input streams</span></li>
+        <li><strong data-en="Monitoring:" data-es="Monitoreo:">Monitoring:</strong><span data-en="Real-time optical density + dissolved O₂" data-es="Densidad óptica en tiempo real + O₂ disuelto">Real-time optical density + dissolved O₂</span></li>
+      </ul>
+    </div>
+
+    <div class="spec-block">
+      <div class="spec-block-tag">⚡ // Energy Output</div>
+      <h3 data-en="Production" data-es="Producción">Production</h3>
+      <ul class="spec-list">
+        <li><strong data-en="Biodiesel:" data-es="Biodiésel:">Biodiesel:</strong><span data-en="Transesterification of algae lipids → B100 fuel" data-es="Transesterificación de lípidos de algas → combustible B100">Transesterification of algae lipids → B100 fuel</span></li>
+        <li><strong data-en="BD yield:" data-es="Rendimiento BD:">BD yield:</strong><span data-en="~58,700 L/ha/yr — 10× soybeans" data-es="~58.700 L/ha/año — 10× la soja">~58,700 L/ha/yr — 10× soybeans</span></li>
+        <li><strong data-en="Methane:" data-es="Metano:">Methane:</strong><span data-en="Anaerobic digestion of residual biomass" data-es="Digestión anaeróbica de la biomasa residual">Anaerobic digestion of residual biomass</span></li>
+        <li><strong data-en="CH₄ use:" data-es="Uso de CH₄:">CH₄ use:</strong><span data-en="Powers Principium lighting, sensors, HMI" data-es="Alimenta iluminación, sensores y HMI del Principium">Powers Principium lighting, sensors, HMI</span></li>
+        <li><strong data-en="Fertilizer:" data-es="Fertilizante:">Fertilizer:</strong><span data-en="N-P-K rich digestate — agricultural grade" data-es="Digestato rico en N-P-K — calidad agrícola">N-P-K rich digestate — agricultural grade</span></li>
+        <li><strong data-en="Carbon credits:" data-es="Créditos de carbono:">Carbon credits:</strong><span data-en="Registered via Verra VCS protocol" data-es="Registrados vía protocolo Verra VCS">Registered via Verra VCS protocol</span></li>
+        <li><strong data-en="Self-powered:" data-es="Autoalimentado:">Self-powered:</strong><span data-en="Methane output fully powers the hub" data-es="La producción de metano alimenta completamente el hub">Methane output fully powers the hub</span></li>
+      </ul>
+    </div>
+
+    <div class="spec-block">
+      <div class="spec-block-tag">🔄 // Integration</div>
+      <h3 data-en="System Links" data-es="Vínculos del Sistema">System Links</h3>
+      <ul class="spec-list">
+        <li><strong data-en="Input:" data-es="Entrada:">Input:</strong><span data-en="Bio-slurry piped from Havoc Slot A via Principium vacuum" data-es="Bio-lodo canalizado desde la Ranura A del Havoc por vacío">Bio-slurry piped from Havoc Slot A via Principium vacuum</span></li>
+        <li><strong data-en="CO₂ loop:" data-es="Ciclo CO₂:">CO₂ loop:</strong><span data-en="Methane combustion CO₂ re-fed into reactor" data-es="CO₂ de combustión de metano retroalimentado al reactor">Methane combustion CO₂ re-fed into reactor</span></li>
+        <li><strong data-en="Biodiesel out:" data-es="Salida biodiésel:">Biodiesel out:</strong><span data-en="Stored on-site → fuels Havoc-Heavy fleet" data-es="Almacenado en sitio → combustible para flota Havoc-Heavy">Stored on-site → fuels Havoc-Heavy fleet</span></li>
+        <li><strong data-en="Fertilizer out:" data-es="Salida fertilizante:">Fertilizer out:</strong><span data-en="Packaged and sold to local agriculture" data-es="Envasado y vendido a la agricultura local">Packaged and sold to local agriculture</span></li>
+        <li><strong data-en="Monitoring:" data-es="Monitoreo:">Monitoring:</strong><span data-en="Linked to Principium HMI — live yield dashboard" data-es="Vinculado al HMI del Principium — panel de rendimiento en vivo">Linked to Principium HMI — live yield dashboard</span></li>
+        <li><strong data-en="Scale-up:" data-es="Escalado:">Scale-up:</strong><span data-en="Modular — add reactor units as fleet grows" data-es="Modular — agregar unidades de reactor al crecer la flota">Modular — add reactor units as fleet grows</span></li>
+        <li><strong data-en="Footprint:" data-es="Huella:">Footprint:</strong><span data-en="Containerized — fits inside Principium hub" data-es="Contenedorizado — cabe dentro del hub Principium">Containerized — fits inside Principium hub</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- THREE OUTPUTS -->
+<section class="outputs-section">
+  <p class="section-tag" data-en="// Energy Revenue Streams" data-es="// Flujos de Ingresos Energéticos">// Energy Revenue Streams</p>
+  <h2 class="section-title">Three <span class="accent" data-en="Outputs" data-es="Productos">Outputs</span>, <span data-en="One Loop" data-es="Un Ciclo">One Loop</span></h2>
+  <div class="divider"></div>
+  <p class="section-lead" data-en="The Biotank doesn't just process waste — it generates three distinct commercial revenue streams from a single input, making Aegis economically self-reinforcing." data-es="El Biotanque no solo procesa residuos — genera tres flujos de ingresos comerciales distintos desde una sola entrada, haciendo que Aegis sea económicamente autosuficiente.">The Biotank doesn't just process waste — it generates three distinct commercial revenue streams from a single input, making Aegis economically self-reinforcing.</p>
+  <div class="output-grid">
+    <div class="output-card">
+      <span class="output-icon">⛽</span>
+      <span class="output-tag" data-en="Revenue Stream 01" data-es="Flujo de Ingresos 01">Revenue Stream 01</span>
+      <h3 data-en="Biodiesel" data-es="Biodiésel">Biodiesel</h3>
+      <p data-en="Algae lipids are extracted and converted via transesterification into B100 biodiesel — a drop-in fuel that powers the Havoc-Heavy long-range transport units and can be sold to the district's public transport network." data-es="Los lípidos de las algas se extraen y convierten mediante transesterificación en biodiésel B100 — un combustible directo que impulsa las unidades de transporte pesado Havoc-Heavy y puede venderse a la red de transporte público del distrito.">Algae lipids are extracted and converted via transesterification into B100 biodiesel — a drop-in fuel that powers the Havoc-Heavy long-range transport units and can be sold to the district's public transport network.</p>
+      <div class="output-val">~58,700 L/ha/yr</div>
+      <div class="output-val-label" data-en="yield — 10× soybean biodiesel" data-es="rendimiento — 10× el biodiésel de soja">yield — 10× soybean biodiesel</div>
+    </div>
+    <div class="output-card">
+      <span class="output-icon">🔥</span>
+      <span class="output-tag" data-en="Revenue Stream 02" data-es="Flujo de Ingresos 02">Revenue Stream 02</span>
+      <h3 data-en="Methane" data-es="Metano">Methane</h3>
+      <p data-en="Residual algae biomass after lipid extraction undergoes anaerobic digestion, producing biogas (methane). This gas is combusted on-site to generate electricity that fully powers the Principium hub — lights, sensors, pumps, HMI, and cooling." data-es="La biomasa residual de algas tras la extracción de lípidos pasa por digestión anaeróbica, produciendo biogás (metano). Este gas se combustiona en el sitio para generar electricidad que alimenta completamente el hub Principium — luces, sensores, bombas, HMI y refrigeración.">Residual algae biomass after lipid extraction undergoes anaerobic digestion, producing biogas (methane). This gas is combusted on-site to generate electricity that fully powers the Principium hub — lights, sensors, pumps, HMI, and cooling.</p>
+      <div class="output-val">100% Hub Power</div>
+      <div class="output-val-label" data-en="Principium fully self-powered" data-es="Principium completamente autoalimentado">Principium fully self-powered</div>
+    </div>
+    <div class="output-card">
+      <span class="output-icon">🌱</span>
+      <span class="output-tag" data-en="Revenue Stream 03" data-es="Flujo de Ingresos 03">Revenue Stream 03</span>
+      <h3 data-en="Fertilizer" data-es="Fertilizante">Fertilizer</h3>
+      <p data-en="The nitrogen and phosphorus-rich digestate left after methane extraction is processed into agricultural-grade liquid fertilizer and sold to Panamanian farms and urban gardens — creating a direct economic link between the city's waste and local food production." data-es="El digestato rico en nitrógeno y fósforo que queda después de la extracción de metano se procesa como fertilizante líquido de calidad agrícola y se vende a granjas panameñas y huertos urbanos — creando un vínculo económico directo entre los residuos de la ciudad y la producción alimentaria local.">The nitrogen and phosphorus-rich digestate left after methane extraction is processed into agricultural-grade liquid fertilizer and sold to Panamanian farms and urban gardens — creating a direct economic link between the city's waste and local food production.</p>
+      <div class="output-val">N-P-K Grade</div>
+      <div class="output-val-label" data-en="sold to local Panamanian agriculture" data-es="vendido a la agricultura panameña local">sold to local Panamanian agriculture</div>
+    </div>
+  </div>
+</section>
+
+<!-- THE LOOP -->
+<section class="two-col-section">
+  <p class="section-tag" data-en="// The Closed Loop" data-es="// El Ciclo Cerrado">// The Closed Loop</p>
+  <h2 class="section-title">How the <span class="accent" data-en="Biotank Closes the Loop" data-es="Biotanque Cierra el Ciclo">Biotank Closes the Loop</span></h2>
+  <div class="divider"></div>
+  <div class="two-col">
+    <div class="col-img">
+      <img src="p/aegis biotanks .png" alt="Aegis Algae Biotank — Circular Energy System">
+      <div class="col-img-overlay"></div>
+      <div class="col-img-badge" data-en="Phase III · Circular Economy Engine" data-es="Fase III · Motor de Economía Circular">Phase III · Circular Economy Engine</div>
+    </div>
+    <div>
+      <div class="cycle-steps">
+        <div class="cycle-step">
+          <div class="cycle-num-wrap">
+            <div class="cycle-num">01</div>
+            <div class="cycle-line"></div>
+          </div>
+          <div></div>
+          <div class="cycle-content">
+            <h4 data-en="Havoc delivers bio-slurry" data-es="El Havoc entrega bio-lodo">Havoc delivers bio-slurry</h4>
+            <p data-en="After each mission, Havoc docks at the Principium. The pneumatic vacuum system extracts the organic bio-slurry from Slot A and pipes it directly into the Biotank." data-es="Tras cada misión, el Havoc se acopla al Principium. El sistema de vacío neumático extrae el bio-lodo orgánico de la Ranura A y lo canaliza directamente al Biotanque.">After each mission, Havoc docks at the Principium. The pneumatic vacuum system extracts the organic bio-slurry from Slot A and pipes it directly into the Biotank.</p>
+          </div>
+        </div>
+        <div class="cycle-step">
+          <div class="cycle-num-wrap">
+            <div class="cycle-num">02</div>
+            <div class="cycle-line"></div>
+          </div>
+          <div></div>
+          <div class="cycle-content">
+            <h4 data-en="Algae feeds and grows" data-es="Las algas se alimentan y crecen">Algae feeds and grows</h4>
+            <p data-en="Chlorella vulgaris absorbs the nutrients from the slurry and CO₂ from the air and methane combustion loop — converting waste into dense biomass continuously, 24/7." data-es="La Chlorella vulgaris absorbe los nutrientes del lodo y el CO₂ del aire y del ciclo de combustión de metano — convirtiendo residuos en biomasa densa de forma continua, las 24 horas.">Chlorella vulgaris absorbs the nutrients from the slurry and CO₂ from the air and methane combustion loop — converting waste into dense biomass continuously, 24/7.</p>
+          </div>
+        </div>
+        <div class="cycle-step">
+          <div class="cycle-num-wrap">
+            <div class="cycle-num">03</div>
+            <div class="cycle-line"></div>
+          </div>
+          <div></div>
+          <div class="cycle-content">
+            <h4 data-en="Harvest every 6 hours" data-es="Cosecha cada 6 horas">Harvest every 6 hours</h4>
+            <p data-en="A centrifuge extracts the dense algae paste from the reactor every 6 hours. Lipids go to the biodiesel press, residual biomass goes to the anaerobic digester." data-es="Una centrífuga extrae la pasta densa de algas del reactor cada 6 horas. Los lípidos van a la prensa de biodiésel, la biomasa residual va al digestor anaeróbico.">A centrifuge extracts the dense algae paste from the reactor every 6 hours. Lipids go to the biodiesel press, residual biomass goes to the anaerobic digester.</p>
+          </div>
+        </div>
+        <div class="cycle-step">
+          <div class="cycle-num-wrap">
+            <div class="cycle-num">04</div>
+            <div class="cycle-line"></div>
+          </div>
+          <div></div>
+          <div class="cycle-content">
+            <h4 data-en="Three products leave the hub" data-es="Tres productos salen del hub">Three products leave the hub</h4>
+            <p data-en="Biodiesel fuels the fleet. Methane powers the hub. Fertilizer is sold to agriculture. CO₂ from methane combustion loops back into the reactor — nothing is wasted." data-es="El biodiésel impulsa la flota. El metano alimenta el hub. El fertilizante se vende a la agricultura. El CO₂ de la combustión del metano regresa al reactor — nada se desperdicia.">Biodiesel fuels the fleet. Methane powers the hub. Fertilizer is sold to agriculture. CO₂ from methane combustion loops back into the reactor — nothing is wasted.</p>
+          </div>
+        </div>
+        <div class="cycle-step">
+          <div class="cycle-num-wrap">
+            <div class="cycle-num">05</div>
+            <div class="cycle-line"></div>
+          </div>
+          <div></div>
+          <div class="cycle-content">
+            <h4 data-en="Carbon credits registered" data-es="Créditos de carbono registrados">Carbon credits registered</h4>
+            <p data-en="Every kilogram of CO₂ sequestered by the algae is logged automatically via the Principium HMI and submitted to the Verra VCS carbon registry — generating additional monthly revenue." data-es="Cada kilogramo de CO₂ capturado por las algas se registra automáticamente a través del HMI del Principium y se envía al registro de carbono Verra VCS — generando ingresos mensuales adicionales.">Every kilogram of CO₂ sequestered by the algae is logged automatically via the Principium HMI and submitted to the Verra VCS carbon registry — generating additional monthly revenue.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BACK BAR -->
+<div class="back-bar">
+  <a href="index.html" class="btn btn-outline" data-en="← Back to Aegis" data-es="← Volver a Aegis">← Back to Aegis</a>
+  <a href="index.html#phases" class="btn btn-primary" data-en="View Full System →" data-es="Ver Sistema Completo →">View Full System →</a>
+</div>
+
+<footer>
+  <div class="footer-brand">SENTINEL <span>CORP</span></div>
+  <div class="footer-copy">© 2026 Sentinel Corp · Universidad Latina de Panamá</div>
+</footer>
+
+<script>
+  let lang='en';
+  function toggleLang(){
+    lang=lang==='en'?'es':'en';
+    document.getElementById('langLabel').textContent=lang==='en'?'ES':'EN';
+    document.querySelectorAll('[data-en]').forEach(el=>{
+      const v=el.getAttribute('data-'+lang);
+      if(v!==null)el.innerHTML=v;
+    });
+    document.documentElement.lang=lang;
+  }
+</script>
+</body>
+</html>
