@@ -74,12 +74,24 @@
   /* OUTPUT CARDS */
   .outputs-section{background:var(--c1);}
   .output-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;}
-  .output-card{background:rgba(3,26,57,0.7);border:1px solid rgba(27,152,196,0.2);border-radius:4px;padding:2rem;transition:border-color 0.3s,box-shadow 0.3s;}
-  .output-card:hover{border-color:rgba(84,182,133,0.45);box-shadow:0 0 24px rgba(84,182,133,0.1);}
+  .output-card{
+    position:relative;border-radius:4px;padding:2rem;
+    border:1px solid rgba(27,152,196,0.2);
+    overflow:hidden;min-height:320px;
+    display:flex;flex-direction:column;justify-content:flex-end;
+    transition:border-color 0.4s;
+  }
+  .output-card:hover{border-color:rgba(84,182,133,0.5);}
+  .output-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(0.12) saturate(0.8);transition:filter 0.5s ease;z-index:0;}
+  .output-card:hover .output-bg{filter:brightness(0.45) saturate(1.2);}
+  .output-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(0deg,rgba(3,26,57,0.95) 0%,rgba(3,26,57,0.5) 60%,transparent 100%);transition:opacity 0.4s;}
+  .output-card:hover .output-overlay{background:linear-gradient(0deg,rgba(3,26,57,0.92) 0%,rgba(3,26,57,0.3) 60%,transparent 100%);}
+  .output-inner{position:relative;z-index:2;}
   .output-icon{font-size:2rem;margin-bottom:1rem;display:block;}
   .output-card h3{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.2rem;color:#fff;margin-bottom:0.3rem;text-transform:uppercase;letter-spacing:0.05em;}
   .output-card .output-tag{display:inline-block;padding:3px 10px;background:rgba(84,182,133,0.12);border:1px solid rgba(84,182,133,0.3);border-radius:2px;font-family:'Share Tech Mono',monospace;font-size:0.65rem;color:var(--c3);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:1rem;}
-  .output-card p{font-size:0.88rem;color:rgba(193,241,251,0.65);line-height:1.75;}
+  .output-card p{font-size:0.88rem;color:rgba(193,241,251,0.65);line-height:1.75;transition:color 0.4s;}
+  .output-card:hover p{color:rgba(193,241,251,0.88);}
   .output-val{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.5rem;color:var(--c3);margin-top:0.8rem;}
   .output-val-label{font-family:'Share Tech Mono',monospace;font-size:0.62rem;color:var(--c4);letter-spacing:0.12em;text-transform:uppercase;}
 
@@ -223,28 +235,41 @@
   <p class="section-lead" data-en="The Biotank doesn't just process waste — it generates three distinct commercial revenue streams from a single input, making Aegis economically self-reinforcing." data-es="El Biotanque no solo procesa residuos — genera tres flujos de ingresos comerciales distintos desde una sola entrada, haciendo que Aegis sea económicamente autosuficiente.">The Biotank doesn't just process waste — it generates three distinct commercial revenue streams from a single input, making Aegis economically self-reinforcing.</p>
   <div class="output-grid">
     <div class="output-card">
-      <span class="output-icon">⛽</span>
-      <span class="output-tag" data-en="Revenue Stream 01" data-es="Flujo de Ingresos 01">Revenue Stream 01</span>
-      <h3 data-en="Biodiesel" data-es="Biodiésel">Biodiesel</h3>
-      <p data-en="Algae lipids are extracted and converted via transesterification into B100 biodiesel — a drop-in fuel that powers the Havoc-Heavy long-range transport units and can be sold to the district's public transport network." data-es="Los lípidos de las algas se extraen y convierten mediante transesterificación en biodiésel B100 — un combustible directo que impulsa las unidades de transporte pesado Havoc-Heavy y puede venderse a la red de transporte público del distrito.">Algae lipids are extracted and converted via transesterification into B100 biodiesel — a drop-in fuel that powers the Havoc-Heavy long-range transport units and can be sold to the district's public transport network.</p>
-      <div class="output-val">~58,700 L/ha/yr</div>
-      <div class="output-val-label" data-en="yield — 10× soybean biodiesel" data-es="rendimiento — 10× el biodiésel de soja">yield — 10× soybean biodiesel</div>
+      <div class="output-bg" style="background-image:url('p/Biodiesel.png');"></div>
+      <div class="output-overlay"></div>
+      <div class="output-inner">
+        <span class="output-icon">⛽</span>
+        <span class="output-tag" data-en="Revenue Stream 01" data-es="Flujo de Ingresos 01">Revenue Stream 01</span>
+        <h3 data-en="Biodiesel" data-es="Biodiésel">Biodiesel</h3>
+        <p data-en="Algae lipids are extracted and converted via transesterification into B100 biodiesel — a drop-in fuel that powers the Havoc-Heavy long-range transport units and can be sold to the district's public transport network." data-es="Los lípidos de las algas se extraen y convierten mediante transesterificación en biodiésel B100 — un combustible directo que impulsa las unidades de transporte pesado Havoc-Heavy y puede venderse a la red de transporte público del distrito.">Algae lipids are extracted and converted via transesterification into B100 biodiesel — a drop-in fuel that powers the Havoc-Heavy long-range transport units and can be sold to the district's public transport network.</p>
+        <div class="output-val">~58,700 L/ha/yr</div>
+        <div class="output-val-label" data-en="yield — 10× soybean biodiesel" data-es="rendimiento — 10× el biodiésel de soja">yield — 10× soybean biodiesel</div>
+      </div>
     </div>
     <div class="output-card">
-      <span class="output-icon">🔥</span>
-      <span class="output-tag" data-en="Revenue Stream 02" data-es="Flujo de Ingresos 02">Revenue Stream 02</span>
-      <h3 data-en="Methane" data-es="Metano">Methane</h3>
-      <p data-en="Residual algae biomass after lipid extraction undergoes anaerobic digestion, producing biogas (methane). This gas is combusted on-site to generate electricity that fully powers the Principium hub — lights, sensors, pumps, HMI, and cooling." data-es="La biomasa residual de algas tras la extracción de lípidos pasa por digestión anaeróbica, produciendo biogás (metano). Este gas se combustiona en el sitio para generar electricidad que alimenta completamente el hub Principium — luces, sensores, bombas, HMI y refrigeración.">Residual algae biomass after lipid extraction undergoes anaerobic digestion, producing biogas (methane). This gas is combusted on-site to generate electricity that fully powers the Principium hub — lights, sensors, pumps, HMI, and cooling.</p>
-      <div class="output-val">100% Hub Power</div>
-      <div class="output-val-label" data-en="Principium fully self-powered" data-es="Principium completamente autoalimentado">Principium fully self-powered</div>
+      <div class="output-bg" style="background-image:url('p/Methane.png');"></div>
+      <div class="output-overlay"></div>
+      <div class="output-inner">
+        <span class="output-icon">🔥</span>
+        <span class="output-tag" data-en="Revenue Stream 02" data-es="Flujo de Ingresos 02">Revenue Stream 02</span>
+        <h3 data-en="Methane" data-es="Metano">Methane</h3>
+        <p data-en="Residual algae biomass after lipid extraction undergoes anaerobic digestion, producing biogas (methane). This gas is combusted on-site to generate electricity that fully powers the Principium hub — lights, sensors, pumps, HMI, and cooling." data-es="La biomasa residual de algas tras la extracción de lípidos pasa por digestión anaeróbica, produciendo biogás (metano). Este gas se combustiona en el sitio para generar electricidad que alimenta completamente el hub Principium — luces, sensores, bombas, HMI y refrigeración.">Residual algae biomass after lipid extraction undergoes anaerobic digestion, producing biogas (methane). This gas is combusted on-site to generate electricity that fully powers the Principium hub — lights, sensors, pumps, HMI, and cooling.</p>
+        <div class="output-val">100% Hub Power</div>
+        <div class="output-val">100% Hub Power</div>
+        <div class="output-val-label" data-en="Principium fully self-powered" data-es="Principium completamente autoalimentado">Principium fully self-powered</div>
+      </div>
     </div>
     <div class="output-card">
-      <span class="output-icon">🌱</span>
-      <span class="output-tag" data-en="Revenue Stream 03" data-es="Flujo de Ingresos 03">Revenue Stream 03</span>
-      <h3 data-en="Fertilizer" data-es="Fertilizante">Fertilizer</h3>
-      <p data-en="The nitrogen and phosphorus-rich digestate left after methane extraction is processed into agricultural-grade liquid fertilizer and sold to Panamanian farms and urban gardens — creating a direct economic link between the city's waste and local food production." data-es="El digestato rico en nitrógeno y fósforo que queda después de la extracción de metano se procesa como fertilizante líquido de calidad agrícola y se vende a granjas panameñas y huertos urbanos — creando un vínculo económico directo entre los residuos de la ciudad y la producción alimentaria local.">The nitrogen and phosphorus-rich digestate left after methane extraction is processed into agricultural-grade liquid fertilizer and sold to Panamanian farms and urban gardens — creating a direct economic link between the city's waste and local food production.</p>
-      <div class="output-val">N-P-K Grade</div>
-      <div class="output-val-label" data-en="sold to local Panamanian agriculture" data-es="vendido a la agricultura panameña local">sold to local Panamanian agriculture</div>
+      <div class="output-bg" style="background-image:url('p/Fertilizer.png');"></div>
+      <div class="output-overlay"></div>
+      <div class="output-inner">
+        <span class="output-icon">🌱</span>
+        <span class="output-tag" data-en="Revenue Stream 03" data-es="Flujo de Ingresos 03">Revenue Stream 03</span>
+        <h3 data-en="Fertilizer" data-es="Fertilizante">Fertilizer</h3>
+        <p data-en="The nitrogen and phosphorus-rich digestate left after methane extraction is processed into agricultural-grade liquid fertilizer and sold to Panamanian farms and urban gardens — creating a direct economic link between the city's waste and local food production." data-es="El digestato rico en nitrógeno y fósforo que queda después de la extracción de metano se procesa como fertilizante líquido de calidad agrícola y se vende a granjas panameñas y huertos urbanos — creando un vínculo económico directo entre los residuos de la ciudad y la producción alimentaria local.">The nitrogen and phosphorus-rich digestate left after methane extraction is processed into agricultural-grade liquid fertilizer and sold to Panamanian farms and urban gardens — creating a direct economic link between the city's waste and local food production.</p>
+        <div class="output-val">N-P-K Grade</div>
+        <div class="output-val-label" data-en="sold to local Panamanian agriculture" data-es="vendido a la agricultura panameña local">sold to local Panamanian agriculture</div>
+      </div>
     </div>
   </div>
 </section>
